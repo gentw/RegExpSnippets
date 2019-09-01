@@ -1,0 +1,91 @@
+
+.       - Any Character Except New Line
+\d      - Digit (0-9)
+\D      - Not a Digit (0-9)
+\w      - Word Character (a-z, A-Z, 0-9, _)
+\W      - Not a Word Character
+\s      - Whitespace (space, tab, newline)
+\S      - Not Whitespace (space, tab, newline)
+
+\b      - Word Boundary
+\B      - Not a Word Boundary
+^       - Beginning of a String
+$       - End of a String
+
+[]      - Matches Characters in brackets
+[^ ]    - Matches Characters NOT in brackets
+|       - Either Or
+( )     - Group
+
+Quantifiers:
+*       - 0 or More
++       - 1 or More
+?       - 0 or One
+{3}     - Exact Number
+{3,4}   - Range of Numbers (Minimum, Maximum)
+
+
+#### Sample Regexs ####
+
+[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+
+
+
+-------------------------------------------------------
+
+\d\d\d.\d\d\d.\d\d\d\d  		=> (.) -> match any char with ., *, - , + and whatever operator between numbers
+
+\d\d\d 					=> match any 3 chars
+
+\d\d\d[-.]\d\d\d[-.]\d\d\d\d 		=> matches numbers with - and . between numbers using character set []
+
+[89]00[-.]\d\d\d[-.]\d\d\d\d		=> match 800 and 900 numbers '[89] numbers which starts with 8 or 9' , '00 is literal search'
+
+[1-7]					=> match numbers from 1 - 7 'using this method instead of [1234567]
+					  
+[a-z]					=> matches lowercase letters from a to z 
+
+[a-zA-Z]				=> matches all letters
+
+[^a-z]					=> matches everything that isn't lowercase letter
+
+[^b]at					=> matches everything which ends with at , but not start with b.
+
+\d{3}.\d{3}.\d{4}			=> matches numbers with specified number of digits.
+
+Mr\.?\s[A-Z]				=> Match word for ex: (Ex;: Mr. S), but only with uppercase character
+Mr\.?\s[A-Z]\w 				=> Match any word character after that uppercase character
+Mr\.?\s[A-Z]\w+				=> Match one ore more word character after that uppercase character (EX: Mr. Schafer , but here doesnt matches Mr. T because 1 or more character after uppercase letter)
+Mr\.?\s[A-Z]\w*				=> Match zero ore more word character after that uppercase character (Ex: Mr. T)
+M(r|s|rs)\.?\s[A-Z]\w*			=> Find Mr, Ms and, Mrs. using group set: ()
+
+
+
+Email:
+
+[a-zA-Z]+@[a-zA-Z]+\.com 			=> matches this email: CoreyMSchafer@gmail.com
+[a-zA-Z.]+@[a-zA-Z]+\.(com|edu)			=> matches this email: corey.schafer@university.edu
+[a-zA-Z0-9.-]+@[a-zA-Z-]+\.(com|edu|net)	=> matches corey-321-schafer@my-work.net
+
+[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+
+
+URL:
+
+https?://(www\.)?\w+\.\w+ 			=> This matches all of URLs
+
+
+
+--------
+
+Capturing groups of domains
+
+
+https?://(www\.)?(\w+)(\.\w+ )
+
+Replace: Group 1: $1
+
+Replace: Group 2: $2
+
+Replace: $2$3 			=> capturing domain name & domain top-level
+
+
+
